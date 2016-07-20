@@ -1,0 +1,281 @@
+
+.defaultText {
+    /* 默认文本样式 */
+    position: absolute;
+    font-size: 16px;
+    font-family: 微软雅黑;
+}
+
+.defaultImg {
+    position: absolute;
+}
+
+/* 文本编辑 */
+#editText {
+    background: #EEE;
+    position: absolute;
+    left: 500px;
+    top: 130px;
+    border: 1px solid rgba(0, 0, 0, .2);
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .3);
+}
+
+#editText li {
+    margin-top: 8px;
+    margin-bottom: 8px;
+    padding: 5px;
+    float: left;
+    cursor: pointer;
+}
+
+#editText li:hover {
+    background: #F9C;
+    border: #F96 solid 1px;
+    border-radius: 5px;
+}
+
+#editText li span {
+    float: left;
+    display: block;
+    width: 20px;
+    height: 20px;
+}
+
+.downArrow {
+    float: right;
+    width: 12px;
+    height: 20px;
+    background: url(images/icons.png) -740px 0px;
+}
+
+.style {
+    font-family: 微软雅黑;
+    font-size: 14px;
+    padding: 5px 10px 5px 5px;
+    border: #999 solid 1px;
+    border-radius: 5px;
+    background: #FFF;
+}
+
+.fontSize {
+    float: left;
+    width: 40px;
+    height: 28px;
+    text-align: center;
+    border: #999 solid 1px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.px {
+    height: 28px;
+    width: 25px;
+    float: left;
+    font-size: 18px;
+    padding-left: 5px;
+    background: #CCC;
+    border: #999 solid 1px;
+    border-bottom-right-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.brush {
+    background: url(images/icons.png);
+    background-position: -40px 0;
+}
+
+.textStyle {
+    background: url(images/icons.png);
+    background-position: 0 0;
+}
+
+.align {
+    background: url(images/icons.png);
+    background-position: -420px 0;
+}
+
+.textColor {
+    background: url(images/icons.png);
+    background-position: -720px 0;
+}
+
+.bgColor {
+    background: url(images/icons.png);
+    background-position: -760px 0;
+}
+
+#editText .insert {
+    background: url(images/icons.png);
+    background-position: -500px 0;
+}
+
+.insertTable {
+    background: url(images/icons.png);
+    background-position: -580px -20px;
+}
+
+.tableOperate {
+    background: url(images/icons.png);
+    background-position: -478px -76px;
+}
+
+.closeEditor {
+    background: url(images/icons.png);
+    background-position: -360px -40px;
+}
+
+.saveEditor {
+    background: url(images/icons.png);
+    background-position: -480px -20px;
+}
+
+.undo {
+    background: url(images/icons.png);
+    background-position: -100px 0px;
+}
+
+.textArea {
+    position: relative;
+    left: 0px;
+    top: 60px;
+    border: #00C solid 1px;
+    height: 300px;
+    width: 600px;
+}
+
+#editText iframe {
+    background: #FFF;
+    position: relative;
+    left: 0px;
+    top: -58px;
+    width: 590px;
+    height: 290px;
+}
+
+/* box-shadow: 1px 1px 10px #000;border-radius: 10px;border: 1px solid #ccc;gold; */
+/* 表格 *//* 改，以免影响到其他表格 */
+table {
+    border-collapse: collapse;
+    border: #000 solid 1px;
+}
+
+td {
+    padding: 5px;
+    border: #000 solid 1px;
+}
+
+table input {
+    border: none;
+}
+
+/* 颜色选择器 */
+.colorSelector {
+    position: relative;
+    top: -200px;
+}
+
+.colorSelector table {
+    border: none;
+    empty-cells: 0;
+    border: 1px #000000 solid;
+    border-bottom: none;
+    border-collapse: collapse;
+    width: 337px;
+}
+
+.colorSelector tr {
+    height: 15px;
+}
+
+.colorSelector td {
+    width: 15px;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.colorSelector .header {
+    width: 325px;
+    padding: 5px;
+    height: 15px;
+    font-size: 15px;
+    border: #000 solid 1px;
+}
+
+/* 字体选择 */
+#fontSelector {
+    display: none;
+    width: 100px;
+    background: #EEE;
+    border: #999 solid 1px;
+    border-radius: 5px;
+    position: relative;
+    top: -250px;
+    left: 60px;
+}
+
+#fontSelector li {
+    font-size: 20px;
+    float: none;
+}
+
+/* 文字样式选择 */
+#fontStyleSelector {
+    display: none;
+    width: 90px;
+    height: 180px;
+    border: #999 solid 1px;
+    border-radius: 5px;
+    background: #FFF;
+    position: relative;
+    top: -250px;
+    left: 250px;
+}
+
+#fontStyleSelector li {
+    clear: both;
+}
+
+/* 回收站 */
+.recycle-bin {
+    position: fixed;
+    bottom: 50px;
+    right: 100px;
+    z-index: -10;
+    width: 100px;
+    height: 100px;
+}
+.recycle-bin .glyphicon {
+    font-size: 100px;
+}
+.bin-active {
+    color: #0FC;
+}
+.bin-hover {
+    color: #008000;
+}
+.recycle-bin div {
+    width: 256px;
+    height: 256px;
+}
+
+
+/* 调试专用 */
+.tmd {
+    width: 100px;
+    height: 100px;
+    background: #0F3;
+    position: absolute;
+    left: 100px;
+    top: 100px;
+}
+
+#tmd {
+    width: 100px;
+    height: 100px;
+    background: #0F3;
+    position: absolute;
+    left: 100px;
+    top: 100px;
+}

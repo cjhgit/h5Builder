@@ -1,0 +1,17 @@
+body {
+    padding-top: 60px;
+}
+
+#btn-icons {}
+#btn-icons li {
+    float: left;
+    width: 20px;
+    height: 20px;
+}
+#btn-icons li.active {
+    color: #fff;
+    background: #555;
+}
+.preview-box {
+    height: 50px;
+}
