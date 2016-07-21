@@ -11,15 +11,32 @@ body {
     background: #f1f1f1;
 }
 
+/* 通用 */
+.navbar-h5 {
+    background: #fff;
+    border-bottom: 1px solid #eee;
+}
+
+.h5-container {
+    position: absolute;
+    top: 52px;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
+}
 /* 侧栏 */
 .sidebar {
     position: absolute;
-    top: 50px;
+    top: 0px;
     bottom: 0;
     width: 180px;
-    background-color: #f00;
+    background-color: #e5e5e5;
 }
 .new-page {
+    position: absolute;
+    left: 0;
+    bottom: 0;
     display: block;
     width: 100%;
     height: 45px;
@@ -29,15 +46,25 @@ body {
     line-height: 45px;
     background: #008EB7;
 }
+.new-page:hover {
+    color: #fff;
+}
 /* 预览区 */
 .preview-list {
-    height: 500px;
-    overflow: scroll;
+    position: absolute;
+    top: 0;
+    bottom: 40px;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+}
+.preview-list:hover {
+    overflow-y: auto;
 }
 .preview-item {
     height: 180px;
-    background-color: #e5e5e5;
-    border-bottom: 1px solid #008000;
+    padding: 1px;
+    border-bottom: 1px solid #ccc;
 }
 .preview-item:hover {
     cursor: move;
@@ -49,9 +76,8 @@ body {
     position: relative;
     width: 80px;
     height: 126px;
-    padding-top: 20px;
-    margin: 0 auto;
-    background: #f00;
+    margin: 25px auto;
+    background: #999;
 }
 .preview-item .viewport {
     position: absolute;
@@ -73,7 +99,7 @@ body {
 }
 .device {
     position: absolute;
-    top: 60px;
+    top: 10px;
     left: 300px;
     width: 322px;
 }
@@ -105,6 +131,51 @@ body {
     background-color: #fff;
     border-bottom-left-radius: 32px;
     border-bottom-right-radius: 32px;
+}
+
+/* 编辑内容 */
+.elem {
+
+}
+.elem.active {
+    border: 1px solid #f00;
+}
+.elem-content {
+    width: 100%;
+    height: 100%;
+}
+
+/* 右侧编辑工具 */
+.edit-tool {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 400px;
+    background-color: #fff;
+}
+.edit-tool .tab-content {
+    padding: 15px;
+}
+.edit-tool .form-group {
+    padding: 0px 0;
+    overflow: auto;
+}
+.edit-tool .control-label {
+    float: left;
+    width: 40%;
+    margin-right: 10%;
+    font-size: 18px;
+}
+.edit-tool .form-control {
+    float: left;
+    width: 40%;
+}
+.edit-tool .btn {
+    float: left;
+    width: 40%;
+    margin-right: 10%;
+    font-size: 18px;
 }
 
 /* 展示 */
@@ -163,4 +234,69 @@ body {
 }
 .item4 {
     background-color: #0f9;
+}
+
+/* 拉伸 */
+.select-elem {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: none;
+    width: 100%;
+    height: 100%;
+    border: 1px dashed #00bbcc;
+}
+.select-elem:hover {
+    cursor: move;
+}
+.scale {
+    position: absolute;
+    width: 7px;
+    height: 7px;
+    background-color: #fff;
+    border: 1px solid #08a1ef;
+}
+.scale-n {
+    top: -4px;
+    left: 50%;
+    cursor: n-resize;
+}
+.scale-ne {
+    top: -4px;
+    right: -4px;
+    border-radius: 4px;
+    cursor: ne-resize;
+}
+.scale-e {
+    top: 50%;
+    right: -4px;
+    cursor: e-resize;
+}
+.scale-se {
+    right: -4px;
+    bottom: -4px;
+    border-radius: 4px;
+    cursor: se-resize;
+}
+.scale-s {
+    bottom: -4px;
+    left: 50%;
+    cursor: s-resize;
+}
+.scale-sw {
+    bottom: -4px;
+    left: -4px;
+    border-radius: 4px;
+    cursor: sw-resize;
+}
+.scale-w {
+    top: 50%;
+    left: -4px;
+    cursor: w-resize;
+}
+.scale-nw {
+    top: -4px;
+    left: -4px;
+    border-radius: 4px;
+    cursor: nw-resize;
 }

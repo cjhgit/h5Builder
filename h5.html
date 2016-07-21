@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <title>H5页面在线制作工具</title>
-<link rel="stylesheet" href="asset/lib/bootstrap/bootstrap.min.css">
+<link rel="stylesheet" href="asset/lib/eui/eui.min.css">
 <link rel="stylesheet" href="asset/lib/font-awesome/font-awesome.min.css">
 <link rel="stylesheet" href="asset/lib/jquery-ui/jquery-ui.min.css">
 <link rel="stylesheet" href="asset/css/h5.css">
@@ -11,7 +11,7 @@
 
 <body>
 <!-- 头部 -->
-<header class="navbar navbar-default" role="navigation">
+<header class="navbar navbar-light navbar-h5" role="navigation">
     <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse"
@@ -25,10 +25,10 @@
         </div>
         <div id="navbar-collapse" class="collapse navbar-collapse">
             <ul class="nav navbar-nav" id="menu-layoutit">
-                <li class="active"><a href="">首页</a> </li>
-                <li><a href="">链接</a> </li>
-                <li class="navbar-form">
-                    <button id="save" class="btn btn-info" href="#undo">保存</button>
+                <li class="nav-item active"><a class="nav-link" href="">首页</a> </li>
+                <li class="nav-item"><a class="nav-link" href="">链接</a> </li>
+                <li class="nav-item navbar-form">
+                    <button id="insert-text" class="btn btn-info" href="#undo">文字</button>
                     <button id="html-src" class="btn btn-info" href="#undo"><i class="glyphicon glyphicon-arrow-left"></i> 源码</button>
                     <button id="redo" class="btn btn-info" href="#redo"><i class="glyphicon glyphicon-arrow-right"></i> 重做</button>
                     <select id="page" class="form-control">
@@ -39,14 +39,18 @@
                 </li>
             </ul>
             <ul class="nav navbar-nav pull-right">
-                <li><a id="display-show" class="btn btn-primary">预览</a> </li>
-                <li class="dropdown">
-                    <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+                <li class="nav-item navbar-form">
+                    <a id="save" class="btn btn-primary">保存</a>
+                    <a id="display-show" class="btn btn-primary">预览</a>
+                    <a id="publish" class="btn btn-primary">发布</a>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
                         更多 <i class="caret"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-right">
-                        <li><a href="index.html">页面生成工具</a></li>
-                        <li><a href="button-builder.html">按钮生成工具</a></li>
+                        <li><a href="#">保存</a></li>
                         <li class="active"><a href="form-builder.html">表单生成工具</a></li>
                         <li><a href="ppt.html">其他工具</a></li>
                     </ul>
@@ -56,44 +60,70 @@
     </div>
 </header>
 <!-- /头部 -->
-<div class="container2">
+<div class="h5-container">
     <div class="sidebar">
         <ul id="preview-list" class="preview-list">
             <li id="test-item" class="preview-item active">
                 <div class="viewport-box">
                     <div class="viewport">
-                        <div></div>
-                        <div style="position: absolute; top: 10px; left: 12px; width: 300px; height: 130px; background: #fff; border: 1px solid #000;"></div>
-                        <img src="asset/img/demo/pa.jpg" style="position: absolute; top: 25px; left: 25px; width: 100px; height: 100px;">
-                        <div style="position: absolute; top: 25px; left: 135px; font-size: 16px">法国 巴黎</div>
-                        <div style="position: absolute; top: 40px; left: 135px; font-size: 50px">14:04</div>
-                        <div style="position: absolute; top: 110px; left: 135px; font-size: 14px">2015年5月11日 星期一 晴</div>
-                        <div>“ 如果你有幸在年轻时在巴黎待过，那以后不管你跑到哪里，它都会跟着你一生一世：巴黎就是一种流动的盛宴。”这段话出自海明威的流动的盛宴。
-
-                            1212121212121212
-
-                            没到过巴黎之前，实在不能想象这个城市何以令海明威如此钟情。可每每看到这样的词句，都会令我有怦然心跳的感觉。因此，到法国的第一个夏天，就迫不及待的游巴黎了。
-
-                            放下行李就往塞纳河方向走。法国人说，没有巴黎就没有法国；而巴黎人说，没有塞纳河就没有巴黎。沿着塞纳河走有看不尽的建筑名胜。说起塞纳河,不能不说河上的桥。
+                        <div class="elem elem-shape" style="position: absolute; top: 10px; left: 12px; width: 300px; height: 130px;">
+                            <div class="elem-content" style="background: #fff; border: 1px solid #000;"></div>
                         </div>
+                        <div class="elem elem-img" style="position: absolute; top: 25px; left: 25px; width: 100px; height: 100px;">
+                            <img src="asset/img/demo/pa.jpg">
+                        </div>
+                        <div class="elem elem-text" style="position: absolute; top: 25px; left: 135px; font-size: 16px">
+                            <div class="elem-content">法国 巴黎</div>
+                        </div>
+                        <div class="elem elem-text" style="position: absolute; top: 40px; left: 135px; font-size: 50px">
+                            <div class="elem-content">14:04</div>
+                        </div>
+                        <div class="elem elem-text" style="position: absolute; top: 110px; left: 135px; font-size: 14px">
+                            <div class="elem-content">2015年5月11日 星期一 晴</div>
+                        </div>
+                        <div class="elem elem-text" style="position: absolute; top: 170px; left: 15px; width: 295px;">
+                            <div class="elem-content">“ 如果你有幸在年轻时在巴黎待过，那以后不管你跑到哪里，它都会跟着你一生一世：巴黎就是一种流动的盛宴。”这段话出自海明威的流动的盛宴。
+
+                                1212121212121212
+
+                                没到过巴黎之前，实在不能想象这个城市何以令海明威如此钟情。可每每看到这样的词句，都会令我有怦然心跳的感觉。因此，到法国的第一个夏天，就迫不及待的游巴黎了。
+
+                                放下行李就往塞纳河方向走。法国人说，没有巴黎就没有法国；而巴黎人说，没有塞纳河就没有巴黎。沿着塞纳河走有看不尽的建筑名胜。说起塞纳河,不能不说河上的桥。
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </li>
             <li class="preview-item">
                 <div class="viewport-box">
                     <div class="viewport">
-                        <div style="position: absolute; top: 60px; left: 50px; font-size: 24px; color: #fff">2015年互联网大会</div>
-                        <div style="position: absolute; top: 100px; left: 90px; font-size: 14px; color: #fff">移动互联+转型 创新</div>
-                        <div style="position: absolute; top: 140px; left: 140px; font-size: 14px; color: #fff">9月5日</div>
-                        <div style="position: absolute; top: 405px; left: 105px; font-size: 14px; color: #fff">北京国际会议中心</div>
-                        <div style="position: absolute; top: 435px; left: 120px; font-size: 14px; color: #fff">点击领取门票</div>
-                        <img src="asset/img/demo/visit1.png" style="position: absolute; top: 35px; left: 30px; width: 256px; height: 222px;">
-                        <img src="asset/img/demo/visit2.png" style="position: absolute; top: 325px; left: 100px; width: 126px; height: 66px;">
+                        <div class="elem elem-text" style="position: absolute; top: 60px; left: 50px; z-index: 100; font-size: 24px; color: #fff">
+                            <div class="elem-content">2015年互联网大会</div>
+                        </div>
+                        <div class="elem elem-text" style="position: absolute; top: 100px; left: 90px; z-index: 101; font-size: 14px; color: #fff">
+                            <div class="elem-content">移动互联+转型 创新</div>
+                        </div>
+                        <div class="elem elem-text" style="position: absolute; top: 140px; left: 140px; z-index: 102; font-size: 14px; color: #fff">
+                            <div class="elem-content">9月5日</div>
+                        </div>
+                        <div class="elem elem-text" style="position: absolute; top: 405px; left: 105px; font-size: 14px; color: #fff">
+                            <div class="elem-content">北京国际会议中心</div>
+                        </div>
+                        <div class="elem elem-text" style="position: absolute; top: 435px; left: 120px; font-size: 14px; color: #fff">
+                            <div class="elem-content">点击领取门票</div>
+                        </div>
+                        <div class="elem elem-image" style="position: absolute; top: 35px; left: 30px; width: 256px; height: 222px;">
+                            <img class="elem-content" src="asset/img/demo/visit1.png" style="width: 100%; height: 100%;">
+                        </div>
+                        <div class="elem elem-image" style="position: absolute; top: 325px; left: 100px; width: 126px; height: 66px;">
+                            <img class="elem-content" src="asset/img/demo/visit2.png">
+                        </div>
                     </div>
                 </div>
             </li>
         </ul>
-        <a class="new-page" href="#">添加新页面</a>
+        <a id="new-page" class="new-page" href="#">添加新页面</a>
     </div>
     <div class="workplace">
         <div class="device">
@@ -103,19 +133,153 @@
                 <div class="device-right"></div>
                 <div id="demo" class="demo">
                     <div style="width: 100%; height: 100%; background: url('asset/img/demo/visit-bg.jpg'); background-size: 100% 100%;">
-                        <div style="position: absolute; top: 60px; left: 50px; font-size: 24px; color: #fff">2015年互联网大会</div>
-                        <div style="position: absolute; top: 100px; left: 90px; font-size: 14px; color: #fff">移动互联+转型 创新</div>
-                        <div style="position: absolute; top: 140px; left: 140px; font-size: 14px; color: #fff">9月5日</div>
-                        <div style="position: absolute; top: 405px; left: 105px; font-size: 14px; color: #fff">北京国际会议中心</div>
-                        <div style="position: absolute; top: 435px; left: 120px; font-size: 14px; color: #fff">点击领取门票</div>
-                        <img src="asset/img/demo/visit1.png" style="position: absolute; top: 35px; left: 30px; width: 256px; height: 222px;">
-                        <img src="asset/img/demo/visit2.png" style="position: absolute; top: 325px; left: 100px; width: 126px; height: 66px;">
+                        <div class="elem elem-shape" style="position: absolute; top: 10px; left: 12px; width: 300px; height: 130px;">
+                            <div class="elem-content" style="background: #fff; border: 1px solid #000;"></div>
+                        </div>
+                        <div class="elem elem-img" style="position: absolute; top: 25px; left: 25px; width: 100px; height: 100px;">
+                            <img class="elem-content" src="asset/img/demo/pa.jpg">
+                        </div>
+                        <div class="elem elem-text" style="position: absolute; top: 25px; left: 135px; font-size: 16px">
+                            <div class="elem-content">法国 巴黎</div>
+                        </div>
+                        <div class="elem elem-text" style="position: absolute; top: 40px; left: 135px; font-size: 50px">
+                            <div class="elem-content">14:04</div>
+                        </div>
+                        <div class="elem elem-text" style="position: absolute; top: 110px; left: 135px; font-size: 14px">
+                            <div class="elem-content">2015年5月11日 星期一 晴</div>
+                        </div>
+                        <div class="elem elem-text" style="position: absolute; top: 170px; left: 15px; width: 295px;">
+                            <div class="elem-content">“ 如果你有幸在年轻时在巴黎待过，那以后不管你跑到哪里，它都会跟着你一生一世：巴黎就是一种流动的盛宴。”这段话出自海明威的流动的盛宴。
+
+                                1212121212121212
+
+                                没到过巴黎之前，实在不能想象这个城市何以令海明威如此钟情。可每每看到这样的词句，都会令我有怦然心跳的感觉。因此，到法国的第一个夏天，就迫不及待的游巴黎了。
+
+                                放下行李就往塞纳河方向走。法国人说，没有巴黎就没有法国；而巴黎人说，没有塞纳河就没有巴黎。沿着塞纳河走有看不尽的建筑名胜。说起塞纳河,不能不说河上的桥。
+                            </div>
+                        </div>
+
 
                     </div>
                 </div>
 
             </div>
             <div class="device-footer"></div>
+        </div>
+    </div>
+    <div class="edit-tool">
+        <ul class="nav nav-tabs">
+            <div class="nav-item active"><a class="nav-link" href="#tab11" data-toggle="tab">图片</a></div>
+            <div class="nav-item"><a class="nav-link" href="#tab12" data-toggle="tab">样式</a></div>
+            <div class="nav-item"><a class="nav-link" href="#tab13" data-toggle="tab">排列</a></div>
+            <div class="nav-item"><a class="nav-link" href="#tab13" data-toggle="tab">动画</a></div>
+        </ul>
+        <div class="tab-content">
+            <div id="tab11" class="tab-pane fade active in">
+                <div class="">
+                    <div class="form-group">
+                        <label class="control-label">字体</label>
+                        <select class="form-control">
+                            <option>雅黑</option>
+                            <option>宋体</option>
+                            <option>仿宋</option>
+                            <option>楷体</option>
+                            <option>黑体</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">背景</label>
+                        <select class="form-control">
+                            <option>方向一</option>
+                            <option>方向二</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">颜色</label>
+                        <select class="form-control">
+                            <option>方向一</option>
+                            <option>方向二</option>
+                        </select>
+                    </div>
+                    <hr>
+                    <div class="form-group">
+                        <label class="control-label">结束时间</label>
+                        <select class="form-control">
+                            <option>方向一</option>
+                            <option>方向二</option>
+                        </select>
+                    </div>
+                    <hr>
+                    <div class="form-group">
+                        <label class="control-label">执行次数</label>
+                        <select class="form-control">
+                            <option>方向一</option>
+                            <option>方向二</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-primary">添加动画</button>
+                        <button class="btn btn-success">播放动画</button>
+                    </div>
+                </div>
+            </div>
+            <div id="tab12" class="tab-pane fade">
+                <div>
+                    <h3>样式</h3>
+                    <p>这是一段文字。</p>
+                </div>
+            </div>
+            <div id="tab13" class="tab-pane fade">
+                <div>
+                    <h3>排列</h3>
+                    <p>这是一段文字。</p>
+                </div>
+            </div>
+            <div id="tab14" class="tab-pane fade">
+                <div class="">
+                    <div class="form-group">
+                        <label class="control-label">动画方式</label>
+                        <select class="form-control">
+                            <option>方式一</option>
+                            <option>方式二</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">运动方向</label>
+                        <select class="form-control">
+                            <option>方向一</option>
+                            <option>方向二</option>
+                        </select>
+                    </div>
+                    <hr>
+                    <div class="form-group">
+                        <label class="control-label">开始时间</label>
+                        <select class="form-control">
+                            <option>方向一</option>
+                            <option>方向二</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">结束时间</label>
+                        <select class="form-control">
+                            <option>方向一</option>
+                            <option>方向二</option>
+                        </select>
+                    </div>
+                    <hr>
+                    <div class="form-group">
+                        <label class="control-label">执行次数</label>
+                        <select class="form-control">
+                            <option>方向一</option>
+                            <option>方向二</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-primary">添加动画</button>
+                        <button class="btn btn-success">播放动画</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -128,14 +292,25 @@
         <li class="display-item item4">4</li>
     </ul>
     <div class="display-tool">
+        <p>可以通过左右方向键控制播放</p>
         <button id="display-prev" class="btn btn-primary" type="button">上一页</button>
         <button id="display-next" class="btn btn-primary" type="button">下一页</button>
     </div>
     <div id="display-close" class="display-close">×</div>
 </div>
+<div id="resize-tool" class="select-elem">
+    <div class="scale scale-n"></div>
+    <div class="scale scale-ne"></div>
+    <div class="scale scale-e"></div>
+    <div class="scale scale-se"></div>
+    <div class="scale scale-s"></div>
+    <div class="scale scale-sw"></div>
+    <div class="scale scale-w"></div>
+    <div class="scale scale-nw"></div>
+</div>
 <footer></footer>
 <script src="asset/lib/jquery/jquery-1.10.2.min.js"></script>
-<script src="asset/lib/bootstrap/bootstrap.min.js"></script>
+<script src="asset/lib/eui/eui.min.js"></script>
 <script src="asset/lib/jquery-ui/jquery-ui.min.js"></script>
 <script src="asset/js/h5.js"></script>
 </body>
