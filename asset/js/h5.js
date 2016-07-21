@@ -4,15 +4,9 @@
  * Created by cjh1 on 2016/7/20.
  */
 var $curElem;
+var $elemMenu = $('#elem-menu');
 
-// 编辑区域
-$(document).on('click', '.elem', function(e) {
-    e.stopPropagation();
-
-    if (displaying) {
-        return false;
-    }
-
+function selectElem($this) {
     var $prevElem = $('.elem.active');
     if ($prevElem.length) {
         $prevElem.draggable('disable');
@@ -20,7 +14,7 @@ $(document).on('click', '.elem', function(e) {
         $prevElem.removeClass('active');
     }
 
-    var $this = $(this);
+
     $curElem = $this;
     $this.addClass('active');
     //$('#resize-tool').appendTo($this);
@@ -49,7 +43,51 @@ $(document).on('click', '.elem', function(e) {
         var $content = $this.find('.elem-content');
         dealImageElem($content);
     }
+}
+
+// 编辑区域
+$(document).on('click', '.elem', function(e) {
+    e.stopPropagation();
+
+    if (displaying) {
+        return false;
+    }
+
+    var $this = $(this);
+    selectElem($this);
 });
+
+// 元素右键菜单
+$(document).on('contextmenu', '.elem', function(e) {
+    e.preventDefault();
+
+    if (e.clientY < 400) {
+        $elemMenu.css({
+            'left': e.clientX,
+            'top': e.clientY
+        });
+    } else {
+        $elemMenu.css({
+            'left': e.clientX,
+            'top': e.clientY - $elemMenu.height()
+        });
+    }
+
+    $elemMenu.show();
+
+    selectElem($(this));
+});
+$(document).on('click', function(e) {
+    $elemMenu.hide();
+});
+// 删除元素
+$('#elem-menu-delete').on('click', function(e) {
+    e.preventDefault();
+    $elemMenu.hide();
+
+    $curElem.remove();
+});
+
 $('.h5-container').on('click', function() {
     var $prevElem = $('.elem.active');
     if ($prevElem.length) {

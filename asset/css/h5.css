@@ -320,3 +320,10 @@ body {
     width: 100px;
     height: 100px;
 }
+
+/* 右键菜单 */
+.elem-menu {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
