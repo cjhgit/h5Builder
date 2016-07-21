@@ -100,7 +100,7 @@ body {
 .device {
     position: absolute;
     top: 10px;
-    left: 300px;
+    left: 230px;
     width: 322px;
 }
 .device-header {
@@ -148,7 +148,7 @@ body {
 /* 右侧编辑工具 */
 .edit-tool {
     position: absolute;
-    top: 0;
+    top: 52px;
     right: 0;
     bottom: 0;
     width: 400px;
@@ -299,4 +299,24 @@ body {
     left: -4px;
     border-radius: 4px;
     cursor: nw-resize;
+}
+
+/* 选择图片 */
+.select-img-list {
+    overflow: hidden;
+}
+.select-img-item {
+    float: left;
+    width: 100px;
+    height: 100px;
+    margin-right: 5px;
+    background-color: #999;
+    border: 1px solid #008000;
+}
+.select-img-item:hover {
+    cursor: pointer;
+}
+.select-img-item img {
+    width: 100px;
+    height: 100px;
 }

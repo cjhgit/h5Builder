@@ -1,12 +1,12 @@
 <!doctype html>
 <html>
 <head>
-<meta charset="utf-8">
-<title>H5页面在线制作工具</title>
-<link rel="stylesheet" href="asset/lib/eui/eui.min.css">
-<link rel="stylesheet" href="asset/lib/font-awesome/font-awesome.min.css">
-<link rel="stylesheet" href="asset/lib/jquery-ui/jquery-ui.min.css">
-<link rel="stylesheet" href="asset/css/h5.css">
+    <meta charset="utf-8">
+    <title>H5页面在线制作工具</title>
+    <link rel="stylesheet" href="asset/lib/eui/eui.min.css">
+    <link rel="stylesheet" href="asset/lib/font-awesome/font-awesome.min.css">
+    <link rel="stylesheet" href="asset/lib/jquery-ui/jquery-ui.min.css">
+    <link rel="stylesheet" href="asset/css/h5.css">
 </head>
 
 <body>
@@ -113,10 +113,10 @@
                         <div class="elem elem-text" style="position: absolute; top: 435px; left: 120px; font-size: 14px; color: #fff">
                             <div class="elem-content">点击领取门票</div>
                         </div>
-                        <div class="elem elem-image" style="position: absolute; top: 35px; left: 30px; width: 256px; height: 222px;">
+                        <div class="elem elem-img" style="position: absolute; top: 35px; left: 30px; width: 256px; height: 222px;">
                             <img class="elem-content" src="asset/img/demo/visit1.png" style="width: 100%; height: 100%;">
                         </div>
-                        <div class="elem elem-image" style="position: absolute; top: 325px; left: 100px; width: 126px; height: 66px;">
+                        <div class="elem elem-img" style="position: absolute; top: 325px; left: 100px; width: 126px; height: 66px;">
                             <img class="elem-content" src="asset/img/demo/visit2.png">
                         </div>
                     </div>
@@ -137,7 +137,7 @@
                             <div class="elem-content" style="background: #fff; border: 1px solid #000;"></div>
                         </div>
                         <div class="elem elem-img" style="position: absolute; top: 25px; left: 25px; width: 100px; height: 100px;">
-                            <img class="elem-content" src="asset/img/demo/pa.jpg">
+                            <img class="elem-content" src="asset/img/avatar.jpg">
                         </div>
                         <div class="elem elem-text" style="position: absolute; top: 25px; left: 135px; font-size: 16px">
                             <div class="elem-content">法国 巴黎</div>
@@ -167,122 +167,194 @@
             <div class="device-footer"></div>
         </div>
     </div>
-    <div class="edit-tool">
-        <ul class="nav nav-tabs">
-            <div class="nav-item active"><a class="nav-link" href="#tab11" data-toggle="tab">图片</a></div>
-            <div class="nav-item"><a class="nav-link" href="#tab12" data-toggle="tab">样式</a></div>
-            <div class="nav-item"><a class="nav-link" href="#tab13" data-toggle="tab">排列</a></div>
-            <div class="nav-item"><a class="nav-link" href="#tab13" data-toggle="tab">动画</a></div>
-        </ul>
-        <div class="tab-content">
-            <div id="tab11" class="tab-pane fade active in">
-                <div class="">
-                    <div class="form-group">
-                        <label class="control-label">字体</label>
-                        <select class="form-control">
-                            <option>雅黑</option>
-                            <option>宋体</option>
-                            <option>仿宋</option>
-                            <option>楷体</option>
-                            <option>黑体</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label">背景</label>
-                        <select class="form-control">
-                            <option>方向一</option>
-                            <option>方向二</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label">颜色</label>
-                        <select class="form-control">
-                            <option>方向一</option>
-                            <option>方向二</option>
-                        </select>
-                    </div>
-                    <hr>
-                    <div class="form-group">
-                        <label class="control-label">结束时间</label>
-                        <select class="form-control">
-                            <option>方向一</option>
-                            <option>方向二</option>
-                        </select>
-                    </div>
-                    <hr>
-                    <div class="form-group">
-                        <label class="control-label">执行次数</label>
-                        <select class="form-control">
-                            <option>方向一</option>
-                            <option>方向二</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <button class="btn btn-primary">添加动画</button>
-                        <button class="btn btn-success">播放动画</button>
-                    </div>
-                </div>
+
+</div>
+<div class="edit-tool">
+    <ul id="tool-tab" class="nav nav-tabs">
+        <div class="nav-item active"><a class="nav-link" href="#tab11" data-toggle="tab">图片</a></div>
+        <div class="nav-item"><a class="nav-link" href="#tab12" data-toggle="tab">样式</a></div>
+        <div class="nav-item"><a class="nav-link" href="#tab13" data-toggle="tab">排列</a></div>
+        <div class="nav-item"><a class="nav-link" href="#tab13" data-toggle="tab">动画</a></div>
+    </ul>
+    <div class="tab-content">tab-pane fade active in">
+        <div class="">
+            <div class="form-group">
+                <label class="control-label">文字</label>
+                <input id="editor-text" class="form-control" type="text">
             </div>
-            <div id="tab12" class="tab-pane fade">
-                <div>
-                    <h3>样式</h3>
-                    <p>这是一段文字。</p>
-                </div>
+            <div class="form-group">
+                <label class="control-label">字体</label>
+                <select class="form-control">
+                    <option>雅黑</option>
+                    <option>宋体</option>
+                    <option>仿宋</option>
+                    <option>楷体</option>
+                    <option>黑体</option>
+                </select>
             </div>
-            <div id="tab13" class="tab-pane fade">
-                <div>
-                    <h3>排列</h3>
-                    <p>这是一段文字。</p>
-                </div>
+            <div class="form-group">
+                <label class="control-label">背景</label>
+                <select class="form-control">
+                    <option>方向一</option>
+                    <option>方向二</option>
+                </select>
             </div>
-            <div id="tab14" class="tab-pane fade">
-                <div class="">
-                    <div class="form-group">
-                        <label class="control-label">动画方式</label>
-                        <select class="form-control">
-                            <option>方式一</option>
-                            <option>方式二</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label">运动方向</label>
-                        <select class="form-control">
-                            <option>方向一</option>
-                            <option>方向二</option>
-                        </select>
-                    </div>
-                    <hr>
-                    <div class="form-group">
-                        <label class="control-label">开始时间</label>
-                        <select class="form-control">
-                            <option>方向一</option>
-                            <option>方向二</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label">结束时间</label>
-                        <select class="form-control">
-                            <option>方向一</option>
-                            <option>方向二</option>
-                        </select>
-                    </div>
-                    <hr>
-                    <div class="form-group">
-                        <label class="control-label">执行次数</label>
-                        <select class="form-control">
-                            <option>方向一</option>
-                            <option>方向二</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <button class="btn btn-primary">添加动画</button>
-                        <button class="btn btn-success">播放动画</button>
-                    </div>
-                </div>
+            <div class="form-group">
+                <label class="control-label">颜色</label>
+                <select class="form-control">
+                    <option>方向一</option>
+                    <option>方向二</option>
+                </select>
+            </div>
+            <hr>
+            <div class="form-group">
+                <label class="control-label">结束时间</label>
+                <select class="form-control">
+                    <option>方向一</option>
+                    <option>方向二</option>
+                </select>
+            </div>
+            <hr>
+            <div class="form-group">
+                <button id="editor-relace-img" class="btn btn-primary">替换图片</button>
+                <button class="btn btn-success">播放动画</button>
+            </div>
+        </div>
+    </div>
+    <div id="tab12" class="tab-pane fade">
+        <div class="">
+            <div class="form-group">
+                <label class="control-label">背景颜色</label>
+                <select class="form-control">
+                    <option>方式一</option>
+                    <option>方式二</option>
+                </select>
+            </div>
+            <hr>
+            <div class="form-group">
+                <label class="control-label">边框</label>
+                <select class="form-control">
+                    <option>方向一</option>
+                    <option>方向二</option>
+                </select>
+            </div>
+            <hr>
+            <div class="form-group">
+                <label class="control-label">阴影</label>
+                <select class="form-control">
+                    <option>方向一</option>
+                    <option>方向二</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="control-label">不透明度</label>
+                <select class="form-control">
+                    <option>方向一</option>
+                    <option>方向二</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="control-label">圆角</label>
+                <select class="form-control">
+                    <option>方向一</option>
+                    <option>方向二</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div id="tab13" class="tab-pane fade">
+        <div class="">
+            <div class="form-group">
+                <label class="control-label">背景图片</label>
+                <select class="form-control">
+                    <option>方式一</option>
+                    <option>方式二</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="control-label">运动方向</label>
+                <select class="form-control">
+                    <option>方向一</option>
+                    <option>方向二</option>
+                </select>
+            </div>
+            <hr>
+            <div class="form-group">
+                <label class="control-label">开始时间</label>
+                <select class="form-control">
+                    <option>方向一</option>
+                    <option>方向二</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="control-label">结束时间</label>
+                <select class="form-control">
+                    <option>方向一</option>
+                    <option>方向二</option>
+                </select>
+            </div>
+            <hr>
+            <div class="form-group">
+                <label class="control-label">执行次数</label>
+                <select class="form-control">
+                    <option>方向一</option>
+                    <option>方向二</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-primary">添加动画</button>
+                <button class="btn btn-success">播放动画</button>
+            </div>
+        </div>
+    </div>
+    <div id="tab14" class="tab-pane fade">
+        <div class="">
+            <div class="form-group">
+                <label class="control-label">动画方式</label>
+                <select class="form-control">
+                    <option>方式一</option>
+                    <option>方式二</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="control-label">运动方向</label>
+                <select class="form-control">
+                    <option>方向一</option>
+                    <option>方向二</option>
+                </select>
+            </div>
+            <hr>
+            <div class="form-group">
+                <label class="control-label">开始时间</label>
+                <select class="form-control">
+                    <option>方向一</option>
+                    <option>方向二</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="control-label">结束时间</label>
+                <select class="form-control">
+                    <option>方向一</option>
+                    <option>方向二</option>
+                </select>
+            </div>
+            <hr>
+            <div class="form-group">
+                <label class="control-label">执行次数</label>
+                <select class="form-control">
+                    <option>方向一</option>
+                    <option>方向二</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-primary">添加动画</button>
+                <button class="btn btn-success">播放动画</button>
             </div>
         </div>
     </div>
 </div>
+</div>
+
 <div id="display" class="display">
     <div class="display-mask"></div>
     <ul class="display-list">
@@ -308,10 +380,40 @@
     <div class="scale scale-w"></div>
     <div class="scale scale-nw"></div>
 </div>
+<!-- 替换图片对话框 -->
+<div id="image-select-dialog" class="modal fade">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+                <h4 class="modal-title">选择图片</h4>
+            </div>
+            <div class="modal-body">
+                <div id="">
+                    <ul id="select-img-list" class="select-img-list">
+                        <li class="select-img-item">
+                            <img src="asset/img/avatar.jpg">
+                        </li>
+                        <li class="select-img-item">
+                            <img src="asset/img/demo/visit1.png">
+                        </li>
+                        <li class="select-img-item">
+                            <img src="asset/img/demo/visit2.png">
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">确定</button>
+            </div>
+        </div>
+    </div>
+</div>
 <footer></footer>
 <script src="asset/lib/jquery/jquery-1.10.2.min.js"></script>
 <script src="asset/lib/eui/eui.min.js"></script>
 <script src="asset/lib/jquery-ui/jquery-ui.min.js"></script>
 <script src="asset/js/h5.js"></script>
+<script src="asset/js/h52.js"></script>
 </body>
 </html>
