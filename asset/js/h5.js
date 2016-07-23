@@ -5,6 +5,7 @@
  */
 var $curElem;
 var $elemMenu = $('#elem-menu');
+var $previewMenu = $('#preview-menu');
 
 function selectElem($this) {
     var $prevElem = $('.elem.active');
@@ -17,8 +18,8 @@ function selectElem($this) {
 
     $curElem = $this;
     $this.addClass('active');
-    //$('#resize-tool').appendTo($this);
-    //$('#resize-tool').show();
+    $('#resize-tool').appendTo($this);
+    $('#resize-tool').show();
     $this.resizable({
         handles: 'n, e, s, w, ne, se, sw, nw'
     });
@@ -38,10 +39,10 @@ function selectElem($this) {
 
     if ($this.hasClass('elem-text')) {
         var $content = $this.find('.elem-content');
-        dealTextElem($content);
+        dealTextElem($this);
     } else if ($this.hasClass('elem-img')) {
         var $content = $this.find('.elem-content');
-        dealImageElem($content);
+        dealImageElem($this);
     }
 }
 
@@ -80,13 +81,125 @@ $(document).on('contextmenu', '.elem', function(e) {
 $(document).on('click', function(e) {
     $elemMenu.hide();
 });
+// 置于顶层
+$('#elem-menu-move-front').on('click', function() {
+    var $siblings = $curElem.siblings();
+    var zIndex = $curElem.css('z-index');
+    $curElem.css('z-index', $siblings.length);
+    $siblings.each(function() {
+        var z = $(this).css('z-index');
+        if (z > zIndex) {
+           $(this).css('z-index', z - 1);
+        }
+    });
+});
+// 上移一层
+$('#elem-menu-move-up').on('click', function() {
+    var zIndex = $curElem.css('z-index');
+    var $siblings = $curElem.siblings();
+    if (zIndex >= $siblings.length) {
+        return;
+    }
+    $curElem.css('z-index', zIndex + 1);
+    $siblings.each(function() {
+        var z = $(this).css('z-index');
+        if (parseInt(z) === parseInt(zIndex) + 1) {
+            console.log(1);
+            $(this).css('z-index', zIndex);
+        }
+    });
+});
+// 置于底层
+$('#elem-menu-move-behind').on('click', function() {
+    var zIndex = $curElem.css('z-index');
+    $curElem.css('z-index', 0);
+    $curElem.siblings().each(function() {
+        var z = $(this).css('z-index');
+        if (z < zIndex) {
+            $(this).css('z-index', z + 1);
+        }
+    });
+});
+// 下移一层
+$('#elem-menu-move-down').on('click', function() {
+    var zIndex = $curElem.css('z-index');
+    if (zIndex === 0) {
+        return;
+    }
+    $curElem.css('z-index', zIndex - 1);
+    $curElem.siblings().each(function() {
+        var z = $(this).css('z-index');
+        if (parseInt(z) === parseInt(zIndex) - 1) {
+            $(this).css('z-index', zIndex);
+        }
+    });
+});
 // 删除元素
 $('#elem-menu-delete').on('click', function(e) {
     e.preventDefault();
     $elemMenu.hide();
 
+    $('#resize-tool').appendTo($(document.body));
+    $('#resize-tool').hide();
+
     $curElem.remove();
 });
+
+// 左侧预览右键菜单
+$(document).on('contextmenu', '.preview-item', function(e) {
+    e.preventDefault();
+
+    if (e.clientY < 400) {
+        $previewMenu.css({
+            'left': e.clientX,
+            'top': e.clientY
+        });
+    } else {
+        $previewMenu.css({
+            'left': e.clientX,
+            'top': e.clientY - $previewMenu.height()
+        });
+    }
+
+    $previewMenu.show();
+
+    selectPreviewitem($(this));
+});
+$(document).on('click', function(e) {
+    $previewMenu.hide();
+});
+// 删除页面
+$('#preview-menu-delete').on('click', function(e) {
+    e.preventDefault();
+    $previewMenu.hide();
+
+    var $removeItem = $curPreviewItem;
+
+    var $newElem = $('#preview-list').children().first();
+    $newElem.addClass('active');
+    selectPreviewitem($newElem);
+
+
+    /*
+    if ($curPreviewItem.hasClass('active')) {
+        var $next = $curPreviewItem.next();
+        if ($next.length) {
+            $next.addClass('active');
+            selectPreviewitem($next);
+        } else {
+            var $prev = $curPreviewItem.prev();
+            if ($prev.length) {
+                $prev.addClass('active');
+                selectPreviewitem($prev);
+            }
+        }
+    }
+    */
+    $removeItem.remove();
+
+
+});
+
 
 $('.h5-container').on('click', function() {
     var $prevElem = $('.elem.active');
@@ -95,6 +208,7 @@ $('.h5-container').on('click', function() {
         $prevElem.resizable('disable');
         $prevElem.removeClass('active');
     }
+    $('#resize-tool').hide();
 });
 
 // 添加新页面
@@ -112,29 +226,47 @@ $('#save').on('click', function() {
     $('#test-item .viewport').html($('#demo').html());
 });
 
+var $curPreviewItem;
+
+function selectPreviewitem($this) {
+    $curPreviewItem = $this;
+    $('.preview-item.active .viewport').html($('#demo').html());
+    $this.siblings().removeClass('active').end().addClass('active');
+    $('#demo').html($this.find('.viewport').html());
+    $('.elem.active').removeClass('active');
+}
+
 var curIndex = 0;
 // 点击左侧预览，保存并更新编辑区
 $('#preview-list').on('click', '.preview-item', function() {
-    $('.preview-item.active .viewport').html($('#demo').html());
-    $(this).siblings().removeClass('active').end().addClass('active');
-    $('#demo').html($(this).find('.viewport').html());
-    $('.elem.active').removeClass('active');
+    selectPreviewitem($(this));
 });
-
+$( "#preview-list" ).sortable();
 /* 展示 */
 $('#display-close').on('click', function() {
     displaying = false;
     $('#display').hide();
+    $('#demo').show();
 });
+function startAnim() {
+    var $list = $('.display-list');
+    var $items = $list.find('.display-item');
+    var $cur = $items.eq(displayIndex);
+    //$cur.data('anim').split(';');
+}
 $('#display-show').on('click', function() {
     initDisplay();
     displaying = true;
+    $('#demo').hide();
     $('#display').show();
+    startAnim();
 });
 var displayIndex = 0;
 var totalPage = 4;
 var displaying = false;
 function initDisplay() {
+    $('.preview-item.active .viewport').html($('#demo').html());
+
     $previewList = $('#preview-list');
     $previewItems = $previewList.find('.preview-item');
     totalPage = $previewItems.length;

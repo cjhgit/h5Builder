@@ -135,10 +135,10 @@ body {
 
 /* 编辑内容 */
 .elem {
-
+    /*overflow: hidden;*/
 }
 .elem.active {
-    border: 1px solid #f00;
+    /*border: 1px solid #f00;*/
 }
 .elem-content {
     width: 100%;
@@ -159,7 +159,12 @@ body {
 }
 .edit-tool .form-group {
     padding: 0px 0;
-    overflow: auto;
+}
+.edit-tool .form-group:before,
+.edit-tool .form-group:after {
+    content: "";
+    display: table;
+    clear: both;
 }
 .edit-tool .control-label {
     float: left;
@@ -167,10 +172,17 @@ body {
     margin-right: 10%;
     font-size: 18px;
 }
-.edit-tool .form-control {
+
+.edit-tool .form-control,
+.edit-tool .minicolors {
+    position: relative;
     float: left;
     width: 40%;
 }
+.edit-tool .minicolors .form-control {
+    width: 100%;
+}
+
 .edit-tool .btn {
     float: left;
     width: 40%;
