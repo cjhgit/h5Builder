@@ -200,8 +200,7 @@ $('#preview-menu-delete').on('click', function(e) {
 
 });
 
-
-$('.h5-container').on('click', function() {
+function disableActiveElem() {
     var $prevElem = $('.elem.active');
     if ($prevElem.length) {
         $prevElem.draggable('disable');
@@ -209,6 +208,10 @@ $('.h5-container').on('click', function() {
         $prevElem.removeClass('active');
     }
     $('#resize-tool').hide();
+}
+
+$('.h5-container').on('click', function() {
+    disableActiveElem();
 });
 
 // 添加新页面
@@ -234,11 +237,15 @@ function selectPreviewitem($this) {
     $this.siblings().removeClass('active').end().addClass('active');
     $('#demo').html($this.find('.viewport').html());
     $('.elem.active').removeClass('active');
+
+    $('#resize-tool').appendTo($(document.body));
+    $('#resize-tool').hide();
 }
 
 var curIndex = 0;
 // 点击左侧预览，保存并更新编辑区
 $('#preview-list').on('click', '.preview-item', function() {
+    disableActiveElem();
     selectPreviewitem($(this));
 });
 $( "#preview-list" ).sortable();
