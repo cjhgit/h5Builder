@@ -3,7 +3,6 @@
  */
 
 
-
 // 文字
 $('#editor-text').on('change', function() {
     $curElem.find('.elem-content').text($(this).val());
@@ -12,6 +11,17 @@ $('#editor-text').on('change', function() {
 $('#editor-font-family').on('change', function() {
     var fontFamily = $(this).children('option:selected').val();
     $curElem.css('font-family', fontFamily);
+});
+// 动画方式
+$('#editor-anim-name').on('change', function() {
+    var anim = $(this).val();
+    selectAnim(anim);
+    if (anim) {
+        $('#editor-anim-box').show();
+    } else {
+        $('#editor-anim-box').hide();
+    }
+    //$curElem.css('font-size', $(this).val() + 'px');
 });
 // 字体大小
 $('#editor-font-size').on('change', function() {
@@ -33,6 +43,22 @@ $('#editor-border-radius').on('change', function() {
 // 透明度
 $('#editor-opacity').on('change', function() {
     $curElem.css('opacity', $(this).val() / 100.0);
+});
+// 动画持续时间
+$('#editor-anim-duration').on('change', function() {
+    var duration = ($(this).val() / 1000) + 's';
+    console.log('时间'+duration);
+    $curElem.css('animation-duration',duration);
+});
+// 动画开始时间
+$('#editor-anim-delay').on('change', function() {
+    var delay = ($(this).val() / 1000) + 's';
+    console.log('时间'+delay);
+    $curElem.css('animation-delay',delay);
+});
+// 动画执行次数
+$('#editor-anim-count').on('change', function() {
+    $curElem.css('animation-iteration-count', $(this).val());
 });
 // 替换图片
 $('#editor-relace-img').on('click', function() {
@@ -71,6 +97,9 @@ $('#editor-border-color').colorpicker({
 function dealTextElem($content) {
     dealElem($content);
 
+    $('#editor-text-box').show();
+    $('#editor-img-box').hide();
+
     $('#editor-text').val($content.text());
     // 颜色
     var color = $content.css('color');
@@ -106,14 +135,46 @@ function dealTextElem($content) {
 $('#editor-add-anim').on('click', function() {
 
 });
+function selectAnim(anim) {
+
+    // 移去旧动画
+    var animation = $curElem.attr("data-anim");
+    console.log('anim' + animation)
+    $curElem.removeClass(animation);
+    //$curElem.removeClass('animated');
+
+    // 添加新动画
+    $curElem.addClass('animated');
+    $curElem.attr('data-anim', anim); // TODO
+    $curElem.addClass(anim);
+
+    var duration = $curElem.css('animation-duration').replace('s', '');
+    duration = parseInt(duration) * 1000;
+
+    console.log(duration);
+    setTimeout(function () {
+        //alert(1);
+        var animation2 = $curElem.attr("data-anim");
+        console.log('anim2' + animation2)
+        $curElem.removeClass(animation2);
+        console.log(typeof animation2);
+        //$curElem.removeClass('slideInLeft');
+        $curElem.removeClass('animated');
+
+    }, duration);
+
+}
+
 $('#editor-play-anim').on('click', function() {
-    var duration = $curElem.css('animation-duration');
-    $curElem.css('animation-play-state', 'running');
+    var anim = $curElem.attr('data-anim');
+    selectAnim(anim);
 });
 
 function dealImageElem($content) {
     dealElem($content);
 
+    $('#editor-img-box').show();
+    $('#editor-text-box').hide();
     //$('#editor-text').val($content.text());
     //alert($content.css('border-width'));
 }
@@ -136,6 +197,36 @@ function dealElem($content) {
     // 透明度
     var opacity = $content.css('opacity');
     $('#editor-opacity').val(opacity * 100);
+
+    // 动画
+    var anim = $curElem.attr('data-anim');
+    if (!anim) {
+        $('#editor-anim-name').val('');
+        $('#editor-anim-box').hide();
+    } else {
+        $('#editor-anim-name').val(anim);
+        $('#editor-anim-box').show();
+
+        // 动画开始时间
+        var delay = $curElem.css('animation-delay');
+        delay = parseInt(delay.replace('s'), '') * 1000;
+        $('#editor-anim-delay').val(delay);
+
+        // 动画持续时间
+        var duration = $curElem.css('animation-duration');
+        duration = parseInt(duration.replace('s'), '') * 1000;
+        $('#editor-anim-duration').val(duration);
+
+        // 动画执行次数
+        var count = $curElem.css('animation-iteration-count');
+        $('#editor-anim-count').val(count);
+        console.log('次数'+typeof count);
+        //duration = parseInt(duration.replace('s'), '') * 1000;
+        //$('#editor-anim-duration').val(duration);
+
+
+
+    }
 }
 
 /* 图片选择 */
@@ -235,5 +326,6 @@ var sRgb = "rgb(255,255,255)" , sHex = "#00538b";
 var sHexColor = sRgb.colorHex();//转换为十六进制方法<code></code>
 var sRgbColor = sHex.colorRgb();//转为RGB颜色值的方法
 
-
+$('.tab-content').hide();
 //$('#tab-style').tab('show');
+//$('#tab-anim').tab('show');

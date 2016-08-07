@@ -44,6 +44,12 @@ function selectElem($this) {
         var $content = $this.find('.elem-content');
         dealImageElem($this);
     }
+
+    $('.tab-content').show();
+    /*$('#tab11').show();
+    $('#tab12').show();
+    $('#tab13').show();
+    $('#tab14').show();*/
 }
 
 // 编辑区域
@@ -212,6 +218,13 @@ function disableActiveElem() {
 
 $('.h5-container').on('click', function() {
     disableActiveElem();
+
+    // 隐藏多余的功能
+    $('.tab-content').hide();
+    /*$('#tab11').hide();
+    $('#tab12').hide();
+    $('#tab13').hide();
+    $('#tab14').hide();*/
 });
 
 // 添加新页面
@@ -259,11 +272,22 @@ function startAnim() {
     var $list = $('.display-list');
     var $items = $list.find('.display-item');
     var $cur = $items.eq(displayIndex);
+
+    $('[data-anim]', $items).each(function () {
+       var $this = $(this);
+        //$this.hide();
+
+        // 添加新动画
+        var anim = $this.attr('data-anim');
+        $this.addClass('animated');
+        $this.addClass(anim);
+    });
     //$cur.data('anim').split(';');
 }
 $('#display-show').on('click', function() {
     initDisplay();
-    displaying = true;
+    displaying = true; // TODO 上到上面？
+    displayIndex = 0;
     $('#demo').hide();
     $('#display').show();
     startAnim();
@@ -294,6 +318,8 @@ function prevDisplay() {
         var $items = $list.find('.display-item');
         $items.eq(displayIndex + 1).hide();
         $items.eq(displayIndex).show();
+
+        startAnim();
     }
 }
 
@@ -304,6 +330,8 @@ function nextDisplay() {
         var $items = $list.find('.display-item');
         $items.eq(displayIndex - 1).hide();
         $items.eq(displayIndex).show();
+
+        startAnim();
     }
 }
 
