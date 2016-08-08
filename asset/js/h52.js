@@ -47,23 +47,51 @@ $('#editor-opacity').on('change', function() {
 // 动画持续时间
 $('#editor-anim-duration').on('change', function() {
     var duration = ($(this).val() / 1000) + 's';
-    console.log('时间'+duration);
     $curElem.css('animation-duration',duration);
 });
 // 动画开始时间
 $('#editor-anim-delay').on('change', function() {
     var delay = ($(this).val() / 1000) + 's';
-    console.log('时间'+delay);
     $curElem.css('animation-delay',delay);
 });
 // 动画执行次数
 $('#editor-anim-count').on('change', function() {
     $curElem.css('animation-iteration-count', $(this).val());
 });
+var replaceType = 0;
 // 替换图片
 $('#editor-relace-img').on('click', function() {
-    $('#image-select-dialog').modal({
+    /*$('#image-select-dialog').modal({
         big: true
+    });*/
+    //$('#image-select-dialog').show();
+    replaceType = 0;
+    eui.dialog({
+        type: 1,
+        shade: false,
+        title: '选择图片',
+        content: $('#image-selector'),
+        cancel: function(index){
+            eui.close(index);
+            this.content.hide();
+        }
+    })
+});
+
+// 替换背景图片
+$('#editor-base-bg-img').on('click', function () {
+    replaceType = 1;
+    eui.dialog({
+        type: 1,
+        shade: false,
+        title: '选择图片',
+        closeBtn: true,
+        shadeClose: true,
+        content: $('#image-selector'),
+        cancel: function(index){
+            eui.close(index);
+            this.content.hide();
+        }
     });
 });
 
@@ -93,12 +121,19 @@ $('#editor-border-color').colorpicker({
 }).on('changeColor', function(e) {
     $curElem.css('border-color', e.color.toHex());
 });
+// 背景颜色
+$('#editor-base-bg-color').colorpicker({
+
+}).on('changeColor', function(e) {
+    $('#demo').css('background-color', e.color.toHex());
+});
 
 function dealTextElem($content) {
     dealElem($content);
 
     $('#editor-text-box').show();
     $('#editor-img-box').hide();
+
 
     $('#editor-text').val($content.text());
     // 颜色
@@ -139,7 +174,6 @@ function selectAnim(anim) {
 
     // 移去旧动画
     var animation = $curElem.attr("data-anim");
-    console.log('anim' + animation)
     $curElem.removeClass(animation);
     //$curElem.removeClass('animated');
 
@@ -151,13 +185,10 @@ function selectAnim(anim) {
     var duration = $curElem.css('animation-duration').replace('s', '');
     duration = parseInt(duration) * 1000;
 
-    console.log(duration);
     setTimeout(function () {
         //alert(1);
         var animation2 = $curElem.attr("data-anim");
-        console.log('anim2' + animation2)
         $curElem.removeClass(animation2);
-        console.log(typeof animation2);
         //$curElem.removeClass('slideInLeft');
         $curElem.removeClass('animated');
 
@@ -179,7 +210,19 @@ function dealImageElem($content) {
     //alert($content.css('border-width'));
 }
 
+// 处理背景颜色和背景图片
+function dealBg() {
+    var bgColor = $('#demo').css('background-color');
+    var hex = bgColor.colorHex();
+    $('#editor-base-bg-color').val(hex);
+    $('#editor-base-bg-color').colorpicker('setValue', hex);
+}
+
 function dealElem($content) {
+    $('#editor-base-box').hide();
+    $('#editor-style-box').show();
+    $('#editor-anim-box2').show();
+
     // 边框颜色
     var borderColor = $content.css('border-color');
     $('#editor-border-color').val(borderColor);
@@ -220,7 +263,6 @@ function dealElem($content) {
         // 动画执行次数
         var count = $curElem.css('animation-iteration-count');
         $('#editor-anim-count').val(count);
-        console.log('次数'+typeof count);
         //duration = parseInt(duration.replace('s'), '') * 1000;
         //$('#editor-anim-duration').val(duration);
 
@@ -231,9 +273,19 @@ function dealElem($content) {
 
 /* 图片选择 */
 $('#select-img-list').on('click', '.select-img-item', function() {
-    var src = $(this).find('img').attr('src');
-    $curElem.find('.elem-content').attr('src', src);
-    $('#image-select-dialog').modal('hide');
+    if (replaceType === 0) {
+        var src = $(this).find('img').attr('src');
+        $curElem.find('.elem-content').attr('src', src);
+        $('#image-select-dialog').modal('hide');
+    } else {
+        var src = $(this).find('img').attr('src');
+        $('#demo').css('background-image', 'url(' + src + ')');
+
+        eui.closeAll();
+        //$('#image-select-dialog').modal('hide'); // TODO ?
+        //
+    }
+
 });
 
 // 插入文字
@@ -256,6 +308,10 @@ $('#insert-img').on('click', function() {
     $('#demo').append($(html));
 });
 
+// 插入形状
+$('#insert-shape').on('click', function() {
+    eui.msg('该功能暂未实现')
+});
 
 //十六进制颜色值域RGB格式颜色值之间的相互转换
 
@@ -268,10 +324,8 @@ String.prototype.colorHex = function(){
     if(/^(rgb|RGB)/.test(that)){
         var aColor = that.replace(/(?:||rgb|RGB)*/g,"").replace('(', '').replace(')', '').split(",");
         var strHex = "#";
-        console.log(aColor);
         for(var i=0; i<aColor.length; i++){
             var hex = Number(aColor[i]).toString(16);
-            console.log(aColor[i]);
             if(hex === "0"){
                 hex += hex;
             }
@@ -326,6 +380,13 @@ var sRgb = "rgb(255,255,255)" , sHex = "#00538b";
 var sHexColor = sRgb.colorHex();//转换为十六进制方法<code></code>
 var sRgbColor = sHex.colorRgb();//转为RGB颜色值的方法
 
-$('.tab-content').hide();
+$('#editor-base-box').show();
+$('#editor-text-box').hide();
+$('#editor-img-box').hide();
+$('#editor-style-box').hide();
+$('#editor-anim-box2').hide();
+
+//$('.tab-content').hide();
 //$('#tab-style').tab('show');
+//$('#display-show').click();
 //$('#tab-anim').tab('show');

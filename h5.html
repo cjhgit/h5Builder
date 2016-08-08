@@ -49,9 +49,10 @@
                         更多 <i class="caret"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-right">
-                        <li><a href="#">保存</a></li>
-                        <li><a href="form-builder.html">表单生成工具</a></li>
-                        <li><a href="ppt.html">其他工具</a></li>
+                        <li><a href="#">我的作品</a></li>
+                        <li><a href="#">我的收藏</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">退出</a></li>
                     </ul>
                 </li>
             </ul>
@@ -64,7 +65,7 @@
         <ul id="preview-list" class="preview-list">
             <li class="preview-item">
                 <div class="viewport-box">
-                    <div class="viewport">
+                    <div class="viewport" style="background-color: #f00;background-image: url('asset/img/demo/visit-bg.jpg')">
                         <div class="elem elem-shape" style="position: absolute; top: 10px; left: 12px; width: 300px; height: 130px;">
                             <div class="elem-content" style="background: #fff; border: 1px solid #000;"></div>
                         </div>
@@ -96,7 +97,7 @@
             </li>
             <li class="preview-item">
                 <div class="viewport-box">
-                    <div class="viewport">
+                    <div class="viewport" style="background-image: url('asset/img/demo/visit-bg.jpg')">
                         <div class="elem elem-text" style="position: absolute; top: 60px; left: 50px; z-index: 100; font-size: 24px; color: #fff">
                             <div class="elem-content">2015年互联网大会</div>
                         </div>
@@ -123,7 +124,7 @@
             </li>
             <li class="preview-item active">
                 <div class="viewport-box">
-                    <div class="viewport">
+                    <div class="viewport" style="background-color: #f90">
                         <div class="elem elem-img" style="position: absolute; top: 25px; left: 25px; width: 100px; height: 100px; border: 3px solid #fff; border-radius: 50px;">
                             <img class="elem-content" src="asset/img/avatar.jpg" style="border-radius: 50px;">
                         </div>
@@ -141,7 +142,7 @@
                 <div class="device-left"></div>
                 <div class="device-right"></div>
                 <div class="demo">
-                    <div id="demo" style="width: 100%; height: 100%; background: url('asset/img/demo/visit-bg.jpg'); background-size: 100% 100%;">
+                    <div id="demo" style="width: 100%; height: 100%; background-size: 100% 100%;">
                         <div class="elem elem-img" style="position: absolute; top: 25px; left: 25px; z-index: 0; width: 100px; height: 100px; border: 3px solid #fff; border-radius: 50px; animation-duration: 2s;" data-anim="fadeIn">
                             <img class="elem-content" src="asset/img/avatar.jpg" style="border-radius: 50px;">
                         </div>
@@ -157,7 +158,7 @@
 <!-- 右侧工具 -->
 <div class="edit-tool">
     <ul id="tool-tab" class="nav nav-tabs">
-        <div class="nav-item active"><a class="nav-link" href="#tab11" data-toggle="tab">图文</a></div>
+        <div class="nav-item active"><a class="nav-link" href="#tab11" data-toggle="tab">基本</a></div>
         <div class="nav-item"><a id="tab-style" class="nav-link" href="#tab12" data-toggle="tab">样式</a></div>
         <div class="nav-item"><a class="nav-link" href="#tab13" data-toggle="tab">排列</a></div>
         <div class="nav-item"><a id="tab-anim" class="nav-link" href="#tab14" data-toggle="tab">动画</a></div>
@@ -199,174 +200,140 @@
                         <button id="editor-relace-img" class="btn btn-primary">替换图片</button>
                     </div>
                 </div>
+                <div id="editor-base-box">
+                    <div class="form-group">
+                        <label class="control-label">背景颜色</label>
+                        <input id="editor-base-bg-color" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <button id="editor-base-bg-img" class="btn btn-primary">设置背景图片</button>
+                    </div>
+                </div>
 
             </div>
         </div>
 
         <div id="tab12" class="tab-pane fade">
             <div class="">
-                <div class="form-group">
-                    <label class="control-label">背景颜色</label>
-                    <select class="form-control">
-                        <option>方式一</option>
-                        <option>方式二</option>
-                    </select>
+                <div id="editor-style-box">
+                    <div class="form-group">
+                        <label class="control-label">边框样式</label>
+                        <select id="editor-border-style" class="form-control">
+                            <option value="none">无边框</option>
+                            <option value="solid">直线</option>
+                            <option value="dashed">虚线</option>
+                            <option value="dotted">点</option>
+                            <option value="double">双线</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">边框大小</label>
+                        <input id="editor-border-width" class="form-control" type="number">
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">边框颜色</label>
+                        <input id="editor-border-color" class="form-control">
+                    </div>
+                    <hr>
+                    <div class="form-group">
+                        <label class="control-label">阴影</label>
+                        <select class="form-control">
+                            <option value="none">无边框</option>
+                            <option value="solid">直线</option>
+                            <option value="dashed">虚线</option>
+                            <option value="dotted">点</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">不透明度</label>
+                        <input id="editor-opacity" class="form-control" type="number" max="100" min="0" step="1">
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">圆角</label>
+                        <input id="editor-border-radius" class="form-control" type="number">
+                    </div>
                 </div>
-                <hr>
-                <div class="form-group">
-                    <label class="control-label">边框样式</label>
-                    <select id="editor-border-style" class="form-control">
-                        <option value="none">无边框</option>
-                        <option value="solid">直线</option>
-                        <option value="dashed">虚线</option>
-                        <option value="dotted">点</option>
-                        <option value="double">双线</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label class="control-label">边框大小</label>
-                    <input id="editor-border-width" class="form-control" type="number">
-                </div>
-                <div class="form-group">
-                    <label class="control-label">边框颜色</label>
-                    <input id="editor-border-color" class="form-control">
-                </div>
-                <hr>
-                <div class="form-group">
-                    <label class="control-label">阴影</label>
-                    <select class="form-control">
-                        <option value="none">无边框</option>
-                        <option value="solid">直线</option>
-                        <option value="dashed">虚线</option>
-                        <option value="dotted">点</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label class="control-label">不透明度</label>
-                    <input id="editor-opacity" class="form-control" type="number" max="100" min="0" step="1">
-                </div>
-                <div class="form-group">
-                    <label class="control-label">圆角</label>
-                    <input id="editor-border-radius" class="form-control" type="number">
-                </div>
+
             </div>
         </div>
         <div id="tab13" class="tab-pane fade">
             <div class="">
-                <div class="form-group">
-                    <label class="control-label">背景图片</label>
-                    <select class="form-control">
-                        <option>方式一</option>
-                        <option>方式二</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label class="control-label">运动方向</label>
-                    <select class="form-control">
-                        <option>方向一</option>
-                        <option>方向二</option>
-                    </select>
-                </div>
-                <hr>
-                <div class="form-group">
-                    <label class="control-label">开始时间</label>
-                    <select class="form-control">
-                        <option>方向一</option>
-                        <option>方向二</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label class="control-label">结束时间</label>
-                    <select class="form-control">
-                        <option>方向一</option>
-                        <option>方向二</option>
-                    </select>
-                </div>
-                <hr>
-                <div class="form-group">
-                    <label class="control-label">执行次数</label>
-                    <select class="form-control">
-                        <option>方向一</option>
-                        <option>方向二</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <button class="btn btn-primary">添加动画</button>
-                    <button class="btn btn-success">播放动画</button>
-                </div>
             </div>
         </div>
         <div id="tab14" class="tab-pane fade">
             <div class="">
-                <div class="form-group">
-                    <label class="control-label">动画方式</label>
-                    <select id="editor-anim-name" class="form-control">
-                        <optgroup label="默认">
-                            <option value="">无</option>
-                        </optgroup>
-                        <optgroup label="强调">
-                            <option value="bounce">弹跳</option>
-                            <option value="flash">闪烁</option>
-                            <option value="pulse">脉动</option>
-                            <option value="rubberBand">橡皮圈</option>
-                            <option value="shake">摇动</option>
-                            <option value="swing">摆动</option>
-                            <option value="tada">波动</option>
-                            <option value="wobble">晃动</option>
-                        </optgroup>
-                        <optgroup label="进入">
-                            <option value="fadeIn">淡入</option>
-                            <option value="zoomInDown">底部进入</option>
-                        </optgroup>
-                        <optgroup label="退出">
-                            <option value="mercedes">Mercedes</option>
-                            <option value="audi">Audi</option>
-                        </optgroup>
-                    </select>
-                </div>
-                <div id="editor-anim-box">
-                   <!-- <div class="form-group">
-                        <label class="control-label">运动方向</label>
-                        <select class="form-control">
-                            <option>方向一</option>
-                            <option>方向二</option>
-                        </select>
-                    </div>-->
-                    <hr>
+                <div id="editor-anim-box2">
                     <div class="form-group">
-                        <label class="control-label">开始时间（毫秒）</label>
-                        <input id="editor-anim-delay" class="form-control" type="number">
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label">动画时间（毫秒）</label>
-                        <input id="editor-anim-duration" class="form-control" type="number">
-                    </div>
-                    <hr>
-                    <div class="form-group">
-                        <label class="control-label">执行次数</label>
-                        <select id="editor-anim-count" class="form-control">
-                            <optgroup label="次数">
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                                <option value="6">6</option>
-                                <option value="7">7</option>
-                                <option value="8">8</option>
-                                <option value="9">9</option>
-                                <option value="10">10</option>
+                        <label class="control-label">动画方式</label>
+                        <select id="editor-anim-name" class="form-control">
+                            <optgroup label="默认">
+                                <option value="">无</option>
                             </optgroup>
-                            <optgroup label="循环">
-                                <option value="linear">无限循环</option>
+                            <optgroup label="强调">
+                                <option value="bounce">弹跳</option>
+                                <option value="flash">闪烁</option>
+                                <option value="pulse">脉动</option>
+                                <option value="rubberBand">橡皮圈</option>
+                                <option value="shake">摇动</option>
+                                <option value="swing">摆动</option>
+                                <option value="tada">波动</option>
+                                <option value="wobble">晃动</option>
+                            </optgroup>
+                            <optgroup label="进入">
+                                <option value="fadeIn">淡入</option>
+                                <option value="zoomInDown">底部进入</option>
+                            </optgroup>
+                            <optgroup label="退出">
+                                <option value="mercedes">Mercedes</option>
+                                <option value="audi">Audi</option>
                             </optgroup>
                         </select>
                     </div>
-                    <div class="form-group">
-                        <!--<button id="editor-add-anim" class="btn btn-primary">添加动画</button>-->
-                        <button id="editor-play-anim" class="btn btn-success">播放动画</button>
+                    <div id="editor-anim-box">
+                        <!-- <div class="form-group">
+                             <label class="control-label">运动方向</label>
+                             <select class="form-control">
+                                 <option>方向一</option>
+                                 <option>方向二</option>
+                             </select>
+                         </div>-->
+                        <hr>
+                        <div class="form-group">
+                            <label class="control-label">开始时间（毫秒）</label>
+                            <input id="editor-anim-delay" class="form-control" type="number">
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">动画时间（毫秒）</label>
+                            <input id="editor-anim-duration" class="form-control" type="number">
+                        </div>
+                        <hr>
+                        <div class="form-group">
+                            <label class="control-label">执行次数</label>
+                            <select id="editor-anim-count" class="form-control">
+                                <optgroup label="次数">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                                </optgroup>
+                                <optgroup label="循环">
+                                    <option value="linear">无限循环</option>
+                                </optgroup>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <!--<button id="editor-add-anim" class="btn btn-primary">添加动画</button>-->
+                            <button id="editor-play-anim" class="btn btn-success">播放动画</button>
+                        </div>
                     </div>
                 </div>
+
 
             </div>
         </div>
@@ -375,16 +342,20 @@
 <!-- 预览 -->
 <div id="display" class="display">
     <div class="display-mask"></div>
-    <ul class="display-list">
-        <li class="display-item item1">1</li>
-        <li class="display-item item2">2</li>
-        <li class="display-item item3">3</li>
-        <li class="display-item item4">4</li>
-    </ul>
+    <div class="display-device">
+        <ul class="display-list">
+            <li class="display-item item1">1</li>
+            <li class="display-item item2">2</li>
+            <li class="display-item item3">3</li>
+            <li class="display-item item4">4</li>
+        </ul>
+    </div>
     <div class="display-tool">
+        <div class="display-control">
+            <i id="display-prev" class="fa fa-angle-up"></i>
+            <i id="display-next" class="fa fa-angle-down"></i>
+        </div>
         <p>可以通过左右方向键控制播放</p>
-        <button id="display-prev" class="btn btn-primary" type="button">上一页</button>
-        <button id="display-next" class="btn btn-primary" type="button">下一页</button>
     </div>
     <div id="display-close" class="display-close">×</div>
 </div>
@@ -410,17 +381,7 @@
             </div>
             <div class="modal-body">
                 <div id="">
-                    <ul id="select-img-list" class="select-img-list">
-                        <li class="select-img-item">
-                            <img src="asset/img/avatar.jpg">
-                        </li>
-                        <li class="select-img-item">
-                            <img src="asset/img/demo/visit1.png">
-                        </li>
-                        <li class="select-img-item">
-                            <img src="asset/img/demo/visit2.png">
-                        </li>
-                    </ul>
+
                 </div>
             </div>
             <div class="modal-footer">
@@ -428,6 +389,22 @@
             </div>
         </div>
     </div>
+</div>
+<div id="image-selector" class="image-selector">
+    <ul id="select-img-list" class="select-img-list">
+        <li class="select-img-item">
+            <img src="asset/img/demo/visit-bg.jpg">
+        </li>
+        <li class="select-img-item">
+            <img src="asset/img/avatar.jpg">
+        </li>
+        <li class="select-img-item">
+            <img src="asset/img/demo/visit1.png">
+        </li>
+        <li class="select-img-item">
+            <img src="asset/img/demo/visit2.png">
+        </li>
+    </ul>
 </div>
 <!-- 元素右键菜单 -->
 <ul id="elem-menu" class="elem-menu dropdown-menu">

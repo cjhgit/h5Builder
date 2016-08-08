@@ -110,7 +110,6 @@ $('#elem-menu-move-up').on('click', function() {
     $siblings.each(function() {
         var z = $(this).css('z-index');
         if (parseInt(z) === parseInt(zIndex) + 1) {
-            console.log(1);
             $(this).css('z-index', zIndex);
         }
     });
@@ -216,11 +215,17 @@ function disableActiveElem() {
     $('#resize-tool').hide();
 }
 
+// 点击工作台空白位置
 $('.h5-container').on('click', function() {
     disableActiveElem();
 
     // 隐藏多余的功能
-    $('.tab-content').hide();
+    $('#editor-base-box').show();
+    $('#editor-text-box').hide();
+    $('#editor-img-box').hide();
+    $('#editor-style-box').hide();
+    $('#editor-anim-box2').hide();
+    //$('.tab-content').hide();
     /*$('#tab11').hide();
     $('#tab12').hide();
     $('#tab13').hide();
@@ -239,20 +244,39 @@ $('#new-page').on('click', function() {
 
 // 保存
 $('#save').on('click', function() {
-    $('#test-item .viewport').html($('#demo').html());
+    eui.msg('功能暂未实现');
+    //$('#test-item .viewport').html($('#demo').html());
+});
+
+// 发布
+$('#publish').on('click', function() {
+    eui.msg('功能暂未实现');
 });
 
 var $curPreviewItem;
 
 function selectPreviewitem($this) {
     $curPreviewItem = $this;
-    $('.preview-item.active .viewport').html($('#demo').html());
+
+    var $viewport = $('.preview-item.active .viewport');
+    var $demo = $('#demo');
+    $viewport.html($demo.html());
+    $viewport.css('background-color', $demo.css('background-color'));
+    $viewport.css('background-image', $demo.css('background-image'));
+
     $this.siblings().removeClass('active').end().addClass('active');
-    $('#demo').html($this.find('.viewport').html());
+
+    var $newViewport = $this.find('.viewport');
+    $demo.html($newViewport.html());
+    $demo.css('background-color', $newViewport.css('background-color'));
+    $demo.css('background-image', $newViewport.css('background-image'));
+
     $('.elem.active').removeClass('active');
 
     $('#resize-tool').appendTo($(document.body));
     $('#resize-tool').hide();
+
+    dealBg();
 }
 
 var curIndex = 0;
@@ -304,8 +328,17 @@ function initDisplay() {
     var $list = $('.display-list');
     $list.empty();
     var html = '';
+    var i = 0;
     $previewItems.each(function() {
-        html += '<li class="display-item">' + $(this).find('.viewport').html() + '</li>'
+        i++;
+        var $viewport = $(this).find('.viewport');
+        var bgImage = $viewport.css('background-image');
+        bgImage = bgImage.replace(/\"/g, "'");
+        console.log('号' + "''")
+        //bgImage = "url('asset/img/demo/visit-bg.jpg')";
+        console.log('背景图' + bgImage);
+
+        html += '<li class="display-item" asd'+i+" style=\";background-image: " + bgImage + ";background-color: " + $viewport.css('background-color') + ';">' + $viewport.html() + '</li>'
     });
     $list.html(html);
     $('.display-list').find('.display-item').eq(0).show();
@@ -316,10 +349,22 @@ function prevDisplay() {
         displayIndex--;
         var $list = $('.display-list');
         var $items = $list.find('.display-item');
-        $items.eq(displayIndex + 1).hide();
-        $items.eq(displayIndex).show();
+        var $curItem = $items.eq(displayIndex + 1);
 
-        startAnim();
+        $curItem.animate({
+            top: '100%'
+        }, 500);
+
+
+        var $prevItem = $items.eq(displayIndex);
+        $prevItem.show();
+        $prevItem.css('top', '-100%');
+        $prevItem.animate({
+            top: '0%'
+        }, 500, function () {
+            startAnim();
+        });
+
     }
 }
 
@@ -328,10 +373,22 @@ function nextDisplay() {
         displayIndex++;
         var $list = $('.display-list');
         var $items = $list.find('.display-item');
-        $items.eq(displayIndex - 1).hide();
-        $items.eq(displayIndex).show();
+        //$items.eq(displayIndex - 1).hide();
+        var $nextItem = $items.eq(displayIndex);
+        $nextItem.show();
 
-        startAnim();
+        $items.eq(displayIndex - 1).css('top', '0%');
+        $items.eq(displayIndex - 1).animate({
+            top: '-100%'
+        }, 500);
+
+        $nextItem.css('top', '100%');
+        $items.eq(displayIndex).animate({
+            top: '0%'
+        }, 500, function () {
+
+            startAnim();
+        });
     }
 }
 
