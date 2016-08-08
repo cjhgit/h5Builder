@@ -1,57 +1,438 @@
-<!DOCTYPE html>
-<html lang="en-us">
-  <head>
-    <meta charset="UTF-8">
-    <title>H5builder by cjhgithub</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
-  </head>
-  <body>
-    <section class="page-header">
-      <h1 class="project-name">H5builder</h1>
-      <h2 class="project-tagline"></h2>
-      <a href="https://github.com/cjhgithub/h5Builder" class="btn">View on GitHub</a>
-      <a href="https://github.com/cjhgithub/h5Builder/zipball/master" class="btn">Download .zip</a>
-      <a href="https://github.com/cjhgithub/h5Builder/tarball/master" class="btn">Download .tar.gz</a>
-    </section>
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>H5页面在线制作工具</title>
+    <link rel="stylesheet" href="asset/lib/eui/eui.min.css">
+    <link rel="stylesheet" href="asset/lib/font-awesome/font-awesome.min.css">
+    <link rel="stylesheet" href="asset/lib/jquery-ui/jquery-ui.min.css">
+    <link rel="stylesheet" href="asset/lib/minicolors/jquery.minicolors.css">
+    <link rel="stylesheet" href="asset/lib/colorpicker/css/bootstrap-colorpicker.min.css">
+    <link rel="stylesheet" href="asset/css/h5.css">
+    <link rel="stylesheet" href="asset/css/animate.css">
+</head>
 
-    <section class="main-content">
-      <h3>
-<a id="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Welcome to GitHub Pages.</h3>
+<body>
+<!-- 头部 -->
+<header class="navbar navbar-light navbar-h5" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse"
+                    data-target="#navbar-collapse">
+                <span class="sr-only">切换导航</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">可视化布局</a>
+        </div>
+        <div id="navbar-collapse" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav" id="menu-layoutit">
+                <li class="nav-item active"><a class="nav-link" href="">首页</a> </li>
+                <li class="nav-item"><a class="nav-link" href="">链接</a> </li>
+                <li class="nav-item navbar-form">
+                    <button id="insert-text" class="btn btn-info" href="#undo">文字</button>
+                    <button id="insert-img" class="btn btn-info" href="#undo"><i class="glyphicon glyphicon-arrow-left"></i> 图片</button>
+                    <button id="insert-shape" class="btn btn-info" href="#undo">形状</button>
+                    <button id="redo" class="btn btn-info" href="#redo"><i class="glyphicon glyphicon-arrow-right"></i> 音乐</button>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav pull-right">
+                <li class="nav-item navbar-form">
+                    <a id="save" class="btn btn-primary">保存</a>
+                    <a id="display-show" class="btn btn-primary">预览</a>
+                    <a id="publish" class="btn btn-primary">发布</a>
+                </li>
 
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here <a href="https://guides.github.com/features/mastering-markdown/">using GitHub Flavored Markdown</a>, select a template crafted by a designer, and publish. After your page is generated, you can check out the new <code>gh-pages</code> branch locally. If you’re using GitHub Desktop, simply sync your repository and you’ll see the new branch.</p>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
+                        更多 <i class="caret"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-right">
+                        <li><a href="#">我的作品</a></li>
+                        <li><a href="#">我的收藏</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">退出</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</header>
+<!-- /头部 -->
+<div class="h5-container">
+    <div class="sidebar">
+        <ul id="preview-list" class="preview-list">
+            <li class="preview-item">
+                <div class="viewport-box">
+                    <div class="viewport" style="background-color: #f00;background-image: url('asset/img/demo/visit-bg.jpg')">
+                        <div class="elem elem-shape" style="position: absolute; top: 10px; left: 12px; width: 300px; height: 130px;">
+                            <div class="elem-content" style="background: #fff; border: 1px solid #000;"></div>
+                        </div>
+                        <div class="elem elem-img" style="position: absolute; top: 25px; left: 25px; width: 100px; height: 100px;">
+                            <img class="elem-content" src="asset/img/demo/pa.jpg">
+                        </div>
+                        <div class="elem elem-text" style="position: absolute; top: 25px; left: 135px; font-size: 16px">
+                            <div class="elem-content">法国 巴黎</div>
+                        </div>
+                        <div class="elem elem-text" style="position: absolute; top: 40px; left: 135px; font-size: 50px" data-anim="fadeIn">
+                            <div class="elem-content">14:04</div>
+                        </div>
+                        <div class="elem elem-text" style="position: absolute; top: 110px; left: 135px; font-size: 14px">
+                            <div class="elem-content">2015年5月11日 星期一 晴</div>
+                        </div>
+                        <div class="elem elem-text" style="position: absolute; top: 170px; left: 15px; width: 295px;">
+                            <div class="elem-content">“ 如果你有幸在年轻时在巴黎待过，那以后不管你跑到哪里，它都会跟着你一生一世：巴黎就是一种流动的盛宴。”这段话出自海明威的流动的盛宴。
 
-<h3>
-<a id="designer-templates" class="anchor" href="#designer-templates" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Designer Templates</h3>
+                                1212121212121212
 
-<p>We’ve crafted some handsome templates for you to use. Go ahead and click 'Continue to layouts' to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved.</p>
+                                没到过巴黎之前，实在不能想象这个城市何以令海明威如此钟情。可每每看到这样的词句，都会令我有怦然心跳的感觉。因此，到法国的第一个夏天，就迫不及待的游巴黎了。
 
-<h3>
-<a id="creating-pages-manually" class="anchor" href="#creating-pages-manually" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Creating pages manually</h3>
+                                放下行李就往塞纳河方向走。法国人说，没有巴黎就没有法国；而巴黎人说，没有塞纳河就没有巴黎。沿着塞纳河走有看不尽的建筑名胜。说起塞纳河,不能不说河上的桥。
+                            </div>
+                        </div>
 
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
+                    </div>
+                </div>
+                <div class="viewport-mask"></div>
+            </li>
+            <li class="preview-item">
+                <div class="viewport-box">
+                    <div class="viewport" style="background-image: url('asset/img/demo/visit-bg.jpg')">
+                        <div class="elem elem-text" style="position: absolute; top: 60px; left: 50px; z-index: 100; font-size: 24px; color: #fff">
+                            <div class="elem-content">2015年互联网大会</div>
+                        </div>
+                        <div class="elem elem-text" style="position: absolute; top: 100px; left: 90px; z-index: 101; font-size: 14px; color: #fff">
+                            <div class="elem-content">移动互联+转型 创新</div>
+                        </div>
+                        <div class="elem elem-text" style="position: absolute; top: 140px; left: 140px; z-index: 102; font-size: 14px; color: #fff">
+                            <div class="elem-content">9月5日</div>
+                        </div>
+                        <div class="elem elem-text" style="position: absolute; top: 405px; left: 105px; font-size: 14px; color: #fff">
+                            <div class="elem-content">北京国际会议中心</div>
+                        </div>
+                        <div class="elem elem-text" style="position: absolute; top: 435px; left: 120px; font-size: 14px; color: #fff">
+                            <div class="elem-content">点击领取门票</div>
+                        </div>
+                        <div class="elem elem-img" style="position: absolute; top: 35px; left: 30px; width: 256px; height: 222px;">
+                            <img class="elem-content" src="asset/img/demo/visit1.png" style="width: 100%; height: 100%;">
+                        </div>
+                        <div class="elem elem-img" style="position: absolute; top: 325px; left: 100px; width: 126px; height: 66px;">
+                            <img class="elem-content" src="asset/img/demo/visit2.png">
+                        </div>
+                    </div>
+                </div>
+                <div class="viewport-mask"></div>
+            </li>
+            <li class="preview-item active">
+                <div class="viewport-box">
+                    <div class="viewport" style="background-color: #f90">
+                        <div class="elem elem-img" style="position: absolute; top: 25px; left: 25px; width: 100px; height: 100px; border: 3px solid #fff; border-radius: 50px;">
+                            <img class="elem-content" src="asset/img/avatar.jpg" style="border-radius: 50px;">
+                        </div>
 
-<h3>
-<a id="authors-and-contributors" class="anchor" href="#authors-and-contributors" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Authors and Contributors</h3>
+                    </div>
+                </div>
+                <div class="viewport-mask"></div>
+            </li>
+        </ul>
+        <a id="new-page" class="new-page" href="#">添加新页面</a>
+    </div>
+    <div class="workplace">
+        <div class="device">
+            <div class="device-header"></div>
+            <div class="device-body">
+                <div class="device-left"></div>
+                <div class="device-right"></div>
+                <div class="demo">
+                    <div id="demo" style="width: 100%; height: 100%; background-size: 100% 100%;">
+                    </div>
+                </div>
 
-<p>You can @mention a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor’s GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
+            </div>
+            <div class="device-footer"></div>
+        </div>
+    </div>
 
-<h3>
-<a id="support-or-contact" class="anchor" href="#support-or-contact" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Support or Contact</h3>
+</div>
+<!-- 右侧工具 -->
+<div class="edit-tool">
+    <ul id="tool-tab" class="nav nav-tabs">
+        <div class="nav-item active"><a class="nav-link" href="#tab11" data-toggle="tab">基本</a></div>
+        <div class="nav-item"><a id="tab-style" class="nav-link" href="#tab12" data-toggle="tab">样式</a></div>
+        <div class="nav-item"><a class="nav-link" href="#tab13" data-toggle="tab">排列</a></div>
+        <div class="nav-item"><a id="tab-anim" class="nav-link" href="#tab14" data-toggle="tab">动画</a></div>
+    </ul>
+    <div class="tab-content">
+        <div id="tab11" class="tab-pane fade active in">
+            <div class="">
+                <div id="editor-text-box">
+                    <div class="form-group">
+                        <label class="control-label">文字</label>
+                        <input id="editor-text" class="form-control" type="text">
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">字体</label>
+                        <select id="editor-font-family" class="form-control">
+                            <option>微软雅黑</option>
+                            <option>宋体</option>
+                            <option>仿宋</option>
+                            <option>楷体</option>
+                            <option>黑体</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">字号</label>
+                        <input id="editor-font-size" class="form-control" type="number">
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">背景</label>
+                        <input id="editor-bg-color" class="form-control" type="text">
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">颜色</label>
+                        <input id="editor-color" class="form-control" type="text">
+                    </div>
+                    <hr>
+                </div>
+                <div id="editor-img-box">
+                    <div class="form-group">
+                        <button id="editor-relace-img" class="btn btn-primary">替换图片</button>
+                    </div>
+                </div>
+                <div id="editor-base-box">
+                    <div class="form-group">
+                        <label class="control-label">背景颜色</label>
+                        <input id="editor-base-bg-color" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <button id="editor-base-bg-img" class="btn btn-primary">设置背景图片</button>
+                    </div>
+                </div>
 
-<p>Having trouble with Pages? Check out our <a href="https://help.github.com/pages">documentation</a> or <a href="https://github.com/contact">contact support</a> and we’ll help you sort it out.</p>
+            </div>
+        </div>
 
-      <footer class="site-footer">
-        <span class="site-footer-owner"><a href="https://github.com/cjhgithub/h5Builder">H5builder</a> is maintained by <a href="https://github.com/cjhgithub">cjhgithub</a>.</span>
+        <div id="tab12" class="tab-pane fade">
+            <div class="">
+                <div id="editor-style-box">
+                    <div class="form-group">
+                        <label class="control-label">边框样式</label>
+                        <select id="editor-border-style" class="form-control">
+                            <option value="none">无边框</option>
+                            <option value="solid">直线</option>
+                            <option value="dashed">虚线</option>
+                            <option value="dotted">点</option>
+                            <option value="double">双线</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">边框大小</label>
+                        <input id="editor-border-width" class="form-control" type="number">
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">边框颜色</label>
+                        <input id="editor-border-color" class="form-control">
+                    </div>
+                    <hr>
+                    <div class="form-group">
+                        <label class="control-label">阴影</label>
+                        <select class="form-control">
+                            <option value="none">无边框</option>
+                            <option value="solid">直线</option>
+                            <option value="dashed">虚线</option>
+                            <option value="dotted">点</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">不透明度</label>
+                        <input id="editor-opacity" class="form-control" type="number" max="100" min="0" step="1">
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">圆角</label>
+                        <input id="editor-border-radius" class="form-control" min="0" type="number">
+                    </div>
+                </div>
 
-        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
-      </footer>
+            </div>
+        </div>
+        <div id="tab13" class="tab-pane fade">
+            <div class="">
+            </div>
+        </div>
+        <div id="tab14" class="tab-pane fade">
+            <div class="">
+                <div id="editor-anim-box2">
+                    <div class="form-group">
+                        <label class="control-label">动画方式</label>
+                        <select id="editor-anim-name" class="form-control">
+                            <optgroup label="默认">
+                                <option value="">无</option>
+                            </optgroup>
+                            <optgroup label="强调">
+                                <option value="bounce">弹跳</option>
+                                <option value="flash">闪烁</option>
+                                <option value="pulse">脉动</option>
+                                <option value="rubberBand">橡皮圈</option>
+                                <option value="shake">摇动</option>
+                                <option value="swing">摆动</option>
+                                <option value="tada">波动</option>
+                                <option value="wobble">晃动</option>
+                            </optgroup>
+                            <optgroup label="进入">
+                                <option value="fadeIn">淡入</option>
+                                <option value="zoomInDown">底部进入</option>
+                            </optgroup>
+                            <optgroup label="退出">
+                                <option value="mercedes">Mercedes</option>
+                                <option value="audi">Audi</option>
+                            </optgroup>
+                        </select>
+                    </div>
+                    <div id="editor-anim-box">
+                        <!-- <div class="form-group">
+                             <label class="control-label">运动方向</label>
+                             <select class="form-control">
+                                 <option>方向一</option>
+                                 <option>方向二</option>
+                             </select>
+                         </div>-->
+                        <hr>
+                        <div class="form-group">
+                            <label class="control-label">开始时间（毫秒）</label>
+                            <input id="editor-anim-delay" class="form-control" type="number">
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">动画时间（毫秒）</label>
+                            <input id="editor-anim-duration" class="form-control" type="number">
+                        </div>
+                        <hr>
+                        <div class="form-group">
+                            <label class="control-label">执行次数</label>
+                            <select id="editor-anim-count" class="form-control">
+                                <optgroup label="次数">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                                </optgroup>
+                                <optgroup label="循环">
+                                    <option value="linear">无限循环</option>
+                                </optgroup>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <!--<button id="editor-add-anim" class="btn btn-primary">添加动画</button>-->
+                            <button id="editor-play-anim" class="btn btn-success">播放动画</button>
+                        </div>
+                    </div>
+                </div>
 
-    </section>
 
-  
-  </body>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 预览 -->
+<div id="display" class="display">
+    <div class="display-mask"></div>
+    <div class="display-device">
+        <ul class="display-list">
+            <li class="display-item item1">1</li>
+            <li class="display-item item2">2</li>
+            <li class="display-item item3">3</li>
+            <li class="display-item item4">4</li>
+        </ul>
+    </div>
+    <div class="display-tool">
+        <div class="display-control">
+            <i id="display-prev" class="fa fa-angle-up"></i>
+            <i id="display-next" class="fa fa-angle-down"></i>
+        </div>
+        <p>可以通过左右方向键控制播放</p>
+    </div>
+    <div id="display-close" class="display-close">×</div>
+</div>
+<div id="resize-tool" class="select-elem">
+    <!--
+    <div class="scale scale-n"></div>
+    <div class="scale scale-ne"></div>
+    <div class="scale scale-e"></div>
+    <div class="scale scale-se"></div>
+    <div class="scale scale-s"></div>
+    <div class="scale scale-sw"></div>
+    <div class="scale scale-w"></div>
+    <div class="scale scale-nw"></div>
+    -->
+</div>
+<!-- 替换图片对话框 -->
+<div id="image-select-dialog" class="modal fade">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+                <h4 class="modal-title">选择图片</h4>
+            </div>
+            <div class="modal-body">
+                <div id="">
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">确定</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="image-selector" class="image-selector">
+    <ul id="select-img-list" class="select-img-list">
+        <li class="select-img-item">
+            <img src="asset/img/demo/visit-bg.jpg">
+        </li>
+        <li class="select-img-item">
+            <img src="asset/img/avatar.jpg">
+        </li>
+        <li class="select-img-item">
+            <img src="asset/img/demo/visit1.png">
+        </li>
+        <li class="select-img-item">
+            <img src="asset/img/demo/visit2.png">
+        </li>
+    </ul>
+</div>
+<!-- 元素右键菜单 -->
+<ul id="elem-menu" class="elem-menu dropdown-menu">
+    <li><a id="elem-menu-move-front" href="#">置于顶层</a></li>
+    <li><a id="elem-menu-move-behind" href="#">置于底层</a></li>
+    <li><a id="elem-menu-move-up" href="#">上移一层</a></li>
+    <li><a id="elem-menu-move-down" href="#">下移一层</a></li>
+    <li class="divider"></li>
+    <li><a href="#">剪切（Ctrl + X）</a></li>
+    <li><a href="#">复制（Ctrl + C）</a></li>
+    <li><a href="#">粘贴（Ctrl + V）</a></li>
+    <li class="divider"></li>
+    <li><a id="elem-menu-delete" href="#">删除</a></li>
+</ul>
+<!-- 左侧预览菜单 -->
+<ul id="preview-menu" class="preview-menu dropdown-menu">
+    <li><a href="#">复制（Ctrl + C）</a></li>
+    <li><a href="#">粘贴（Ctrl + V）</a></li>
+    <li class="divider"></li>
+    <li><a id="preview-menu-delete" href="#">删除（Delete）</a></li>
+</ul>
+
+<footer></footer>
+<script src="asset/lib/jquery/jquery-1.10.2.min.js"></script>
+<script src="asset/lib/eui/eui.min.js"></script>
+<script src="asset/lib/minicolors/jquery.minicolors.min.js"></script>
+<script src="asset/lib/colorpicker/js/bootstrap-colorpicker.min.js"></script>
+<script src="asset/lib/jquery-ui/jquery-ui.min.js"></script>
+<script src="asset/js/h5.js"></script>
+</body>
 </html>
