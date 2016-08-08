@@ -80,6 +80,14 @@ body {
 .preview-item.active {
     background-color: #777;
 }
+.viewport-mask {
+    position: relative;
+    top: -150px;
+    z-index: 100;
+    width: 80px;
+    height: 126px;
+    margin: 25px auto;
+}
 .preview-item .viewport-box {
     position: relative;
     width: 80px;
@@ -144,7 +152,7 @@ body {
 
 /* 编辑内容 */
 .elem {
-    /*overflow: hidden;*/
+   /* overflow: hidden;*/
 }
 .elem.active {
     /*border: 1px solid #f00;*/
